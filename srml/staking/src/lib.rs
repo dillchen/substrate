@@ -1523,7 +1523,7 @@ impl <T: Trait> OnOffenceHandler<T::AccountId, session::historical::Identificati
 
 			// calculate the amount to slash
 			let slash_exposure = exposure.total;
-			let amount = Perbill::from_parts(0 as u32) * slash_exposure;
+			let amount = *slash_fraction * slash_exposure;
 			// in some cases `slash_fraction` can be just `0`,
 			// which means we are not slashing this time.
 			if amount.is_zero() {
